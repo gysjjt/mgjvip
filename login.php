@@ -20,10 +20,6 @@ if($_GET['action'] == "code"){//获取验证码
 	$curl -> params = $params;
 	$result = $curl -> login();
 	$result = json_decode($result,true);
-	echo "<pre>";
-	print_r($result);
-	echo "</pre>";
-	exit;
 	if($result['code'] == 4){
 		echo "验证码错误！";
 	}else if($result['code'] == 5){
