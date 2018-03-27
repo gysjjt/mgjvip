@@ -171,20 +171,19 @@ class curlapi{
 				}
 				ksort($other);
 
-
 				for($i=1; $i<=$rows; $i++) {
                     //卡号
                     $k0 = 6+10*($i-1);
-					$newdata[$k][0] = "\t".$other[$k0]; //卡号
+					$newdata[$k][0] = "\t".$other[7]; //卡号
 					$newdata[$k][1] = $other[2]; //姓名
 					$newdata[$k][2] = $other[1]; //手机号
 					$newdata[$k][3] = $other[3] == '男'?0:1; //性别
 
 					//卡类型
 					$k7 = 7+10*($i-1);
-					$newdata[$k][4] = $other[$k7]; //卡类型
+					$newdata[$k][4] = $other[8]; //卡类型
 
-					$newdata[$k][5] = $other[9]; //折扣
+					$newdata[$k][5] = $other[10]; //折扣
 
 					//卡金余额(必填),疗程,
 					$newdata[$k][6] = 0; //卡金余额
@@ -193,48 +192,33 @@ class curlapi{
 					$newdata[$k][10] = 0; //赠送金
 
 					//卡金余额
-					$k6 = 12+10*($i-1);
-					preg_match_all('/(.*)元/isU', $other[$k6], $data1);
-					if(isset($data1[1]) && count($data1[1]) == 2) {
-						$newdata[$k][6] = str_replace('元:', '', $data1[1][0]);
-						$newdata[$k][6] = str_replace('余:次:', '', $data1[1][0]);
-						//$newdata[$k][7] = str_replace('疗程:', '', $data1[1][1]);
-					} else {
-						$newdata[$k][6] = str_replace('元', '', $other[$k6]);
-						$newdata[$k][6] = str_replace('余:次', '', $other[$k6]);
-						//$newdata[$k][7] = 0;
-					}
+					$newdata[$k][6] = str_replace('元', '', $other[13]);
 
 					//充值总额
-					$k7 = 10+10*($i-1);
-					$newdata[$k][7] += str_replace('元', '', $other[$k7]); //充值总额
+					$newdata[$k][7] += str_replace('元', '', $other[11]); //充值总额
 
 					//消费总额
-					$k11 = 11+10*($i-1);
-					$newdata[$k][9] += str_replace('元', '', $other[$k11]); //消费总额
+					$newdata[$k][9] += str_replace('元', '', $other[12]); //消费总额
 
 					//赠送金
-					$k13 = 13+10*($i-1);
-					$newdata[$k][10] += str_replace('元', '', $other[$k13]); //赠送金
+					$newdata[$k][10] += str_replace('元', '', $other[14]); //赠送金
 
-					$k17 = 17+10*($rows-1);
-					$newdata[$k][8] = str_replace('次', '', $other[$k17]); //消费次数
+					$newdata[$k][8] = str_replace('次', '', $other[18]); //消费次数
 
-					$newdata[$k][11] = $other[$k18]; //积分
+					$newdata[$k][11] = $other[19]; //积分
 
-					$newdata[$k][12] = 0; //开卡时间
+					$newdata[$k][12] = 0; //欠款
 
 					//日期格式转换
 					$date1 = substr($other[5], 0, 3).' '.substr($other[5], 3, 3).' '.substr($other[5], 19, 4);
 					$date1 = date('Y-m-d', strtotime($date1));
+					$newdata[$k][13] = $date1; //开卡时间
 
-					$k19 = 19+10*($rows-1);
-					$date2 = substr($other[$k19], 0, 3).' '.substr($other[$k19], 3, 3).' '.substr($other[$k19], 19, 4);
-
+					$date2 = substr($other[20], 0, 3).' '.substr($other[20], 3, 3).' '.substr($other[20], 19, 4);
 					$date2 = date('Y-m-d', strtotime($date2));
-					$newdata[$k][13] = $date1; //最后消费时间
-					$newdata[$k][14] = $date2 == '1970-01-01'?$date1:$date2; //生日
-					$newdata[$k][15] = ''; //会员备注
+					$newdata[$k][14] = $date2; //最后消费时间
+					$newdata[$k][15] = ''; //生日
+					$newdata[$k][16] = ''; //会员备注
 					ksort($newdata[$k]);
 					$k = $k+$i;
 				}
