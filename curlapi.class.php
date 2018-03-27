@@ -360,7 +360,6 @@ class curlapi{
 						unset($v1[0]);
 					}
 				}
-
 				foreach($other[5] as $k2=>$v2) {
 					$newA[0] = $other[0]; //手机号
 					$newA[1] = "\t".$other[1]; //卡号
@@ -375,9 +374,9 @@ class curlapi{
 					preg_match('/总次数:(.*)，/isU', $v2, $p3);  //总次数
 					preg_match('/剩余次数:(.*)，/isU', $v2, $p4);  //剩余次数
 					preg_match('/单次消费金额:(.*)，/isU', $v2, $p5);  //单次消费金额
-					preg_match('/剩余金额:(.*)#/isU', $v2, $p6);  //剩余金额
+					preg_match('/剩余金额:(.*)，/isU', $v2, $p6);  //剩余金额
                     if(!isset($p6[1])) {
-                        preg_match('/剩余金额:(.*)，/isU', $v2, $p6);  //剩余金额
+						preg_match('/剩余金额:(.*)#/isU', $v2, $p6);  //剩余金额
                     }
 					preg_match('/失效日期：(.*)#/isU', $v2, $p7);  //失效日期
 					$newA[5] = isset($p1[1])?$p1[1]:' ';//项目编号
