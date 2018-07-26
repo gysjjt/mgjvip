@@ -30,7 +30,7 @@ class curlapi{
 
         //cookies存SESSION
         session_start();
-        $_SESSION['cookies'] = "realParentShopId=134940; v=mgj; JSESSIONID=4BBAF794F246BAC02A113045BC06E322.tomcat1; code=9145; token=587b7df2-2a1f-49e9-9087-bd3ab85ec6fc; username=18339637908; JSESSIONID=4AED4B9126D8C513DF70CF732DEC5A30.tomcat1; UM_distinctid=163fd4dbafd83c-0715073c9c1813-36624209-1fa400-163fd4dbafed37; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1528963120; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1528963167; CNZZDATA1258534273=1534094301-1528963153-http%253A%252F%252Fvip2.meiguanjia.net%252F%7C1528963200";
+        $_SESSION['cookies'] = "realParentShopId=851890; v=mgj; JSESSIONID=F8D2833D8B65E9D21BAB28CB35D0F25D.tomcat1; code=6600; token=80234261-65dc-4b37-b821-684fa74386c5; username=15180846889; UM_distinctid=163fd4dbafd83c-0715073c9c1813-36624209-1fa400-163fd4dbafed37; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1532586353; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1532586936; CNZZDATA1258534273=547481605-1532586353-%7C1532586937";
 
         // $_SESSION['cookies'] = $cookies;
         // //截取GIF二进制图片
@@ -143,12 +143,14 @@ class curlapi{
         $rules = array(
             //采集tr中的纯文本内容
             'other' => array('tr','html'),
+            'id' => array('tr','id'),
         );
         $newdata = array();
         $data = QueryList::Query($html, $rules)->data;
         $k = 0;
         foreach ($data as &$item) {
             $other = explode('</td>', $item['other']);
+            $html = $item['other'];
             if(count($other) > 15) {
                 //unset($other[0]);//去掉第一空白项
                 //unset($other[14]);//去掉14项
@@ -172,6 +174,10 @@ class curlapi{
                     $v1= trim(str_replace(PHP_EOL, '', $v1));
                 }
                 ksort($other);
+
+                //获取shopid和会员id
+                preg_match("/shopid=(.*)\&/isU", $html, $shopids);
+                preg_match("/\?id=(.*)\&/isU", $html, $ids);
 
                 for($i=1; $i<=$rows; $i++) {
                     //卡号
@@ -236,6 +242,11 @@ class curlapi{
                     $newdata[$k][13] = $date1; //最后消费时间
                     $newdata[$k][14] = $date2 == '1970-01-01'?$date1:$date2; //生日
                     $newdata[$k][15] = ''; //会员备注
+
+                    //获取shopid和会员id
+                    $newdata[$k][20] = $shopids[1];
+                    $newdata[$k][21] = $ids[1];
+
                     ksort($newdata[$k]);
                     $k = $k+$i;
                 }
@@ -259,7 +270,6 @@ class curlapi{
             $keyword = trim($v[0]);
             $this -> url = "http://vip8.meiguanjia.net/shair/consumerHelp!find.action?searchType=1&keyType=1&keyword=$keyword";
             $rs = $this -> curl();
-
             //会员备注
             $rules = array(
                 'mark' => array('textarea','html'),
@@ -287,6 +297,23 @@ class curlapi{
                 }
             }
             $v[12] = $debt;
+
+
+            //卡备注
+            $shopid = $v[20];
+            $id = $v[21];
+            $this -> url = "http://vip8.meiguanjia.net/shair/memberArchives!editMember.action?id=$id&shopid=$shopid&flag=2&dickey=1";
+            $rs = $this -> curl();
+            $rules = array(
+                'mark' => array('input','name'),
+                'value' => array('input','value'),
+            );
+            $cardRemark = QueryList::Query($rs, $rules)->data;
+            if(isset($cardRemark[40]['value']) && $cardRemark[40]['value'] != ''){
+                $v[16] .= "，卡备注：".$cardRemark[40]['value'];
+            }
+            unset($v[20]);
+            unset($v[21]);
 
             foreach($v as $k=>&$v1){
                 //时间转换
