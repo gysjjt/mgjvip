@@ -30,7 +30,7 @@ class curlapi{
 
         //cookies存SESSION
         session_start();
-        $_SESSION['cookies'] = "realParentShopId=152221; JSESSIONID=45D7C7D2B5CCEC77514A37F706EA9441.tomcat1; code=7596; token=da7fde9f-d6e1-45c8-95ef-ce4d66a8e401; username=%E5%B0%9A%E5%98%89%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%91%E4%BC%9A%E6%89%80; UM_distinctid=163a5f214d16fb-0c2646d30f33d1-36624209-1fa400-163a5f214d2a21; Hm_lvt_cc903faaed69cca18f7cf0997b2e62c9=1533346462; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1533037461,1533084293,1533346400,1534929736; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1534929834; CNZZDATA1258534273=22604554-1533037460-%7C1534929839";
+        $_SESSION['cookies'] = "realParentShopId=1021641; v=mgj; JSESSIONID=69C9F40F73275F153338CB3260620E04.tomcat1; code=1282; token=cb09d51a-c78b-44ab-b571-6f2d90664071; username=%E5%B0%9A%E7%BE%8E%E5%9B%BD%E9%99%85%E5%BA%97; UM_distinctid=163fd4dbafd83c-0715073c9c1813-36624209-1fa400-163fd4dbafed37; Hm_lvt_cc903faaed69cca18f7cf0997b2e62c9=1535956653; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1535591465,1535693704,1535956560,1536109706; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1536109748; CNZZDATA1258534273=312623051-1529563067-%7C1536109750";
 
         // $_SESSION['cookies'] = $cookies;
         // //截取GIF二进制图片
@@ -276,6 +276,9 @@ class curlapi{
             );
             $mark = QueryList::Query($rs, $rules)->data;
             $v[16] = $mark[0]['mark'];
+            $v[16] = preg_replace("/\s\n\t/","",$v[16]);
+            $v[16] = str_replace('&amp;', ' ', $v[16]);
+
             //欠款
             $debt = 0;
             $rules = array(
@@ -300,18 +303,18 @@ class curlapi{
 
 
             //卡备注
-            $shopid = $v[20];
-            $id = $v[21];
-            $this -> url = "http://vip8.meiguanjia.net/shair/memberArchives!editMember.action?id=$id&shopid=$shopid&flag=2&dickey=1";
-            $rs = $this -> curl();
-            $rules = array(
-                'mark' => array('input','name'),
-                'value' => array('input','value'),
-            );
-            $cardRemark = QueryList::Query($rs, $rules)->data;
-            if(isset($cardRemark[40]['value']) && $cardRemark[40]['value'] != ''){
-                $v[16] .= "，卡备注：".$cardRemark[40]['value'];
-            }
+            // $shopid = $v[20];
+            // $id = $v[21];
+            // $this -> url = "http://vip8.meiguanjia.net/shair/memberArchives!editMember.action?id=$id&shopid=$shopid&flag=2&dickey=1";
+            // $rs = $this -> curl();
+            // $rules = array(
+            //     'mark' => array('input','name'),
+            //     'value' => array('input','value'),
+            // );
+            // $cardRemark = QueryList::Query($rs, $rules)->data;
+            // if(isset($cardRemark[40]['value']) && $cardRemark[40]['value'] != ''){
+            //     $v[16] .= "，卡备注：".$cardRemark[40]['value'];
+            // }
             unset($v[20]);
             unset($v[21]);
 
