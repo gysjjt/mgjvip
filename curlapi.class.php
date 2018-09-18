@@ -278,7 +278,7 @@ class curlapi{
             $v[16] = $mark[0]['mark'];
             $v[16] = preg_replace("/\s\n\t/","",$v[16]);
             $v[16] = str_replace('&amp;', ' ', $v[16]);
-
+            $v[16] = preg_replace("/\s/","", $v[16]);
             //欠款
             $debt = 0;
             $rules = array(
