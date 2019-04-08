@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "realParentShopId=1017561; v=mgj; JSESSIONID=48AB1F2AC362E9BA0E6B28F347F402C2.tomcat1; token=355e7cc7-4e48-4075-a674-90a14ee07121; username=%E4%BD%90%E7%91%9E%E5%9B%BD%E9%99%85; Hm_lvt_cc903faaed69cca18f7cf0997b2e62c9=1535956653; UM_distinctid=167deccde3a65f-06b5ba58957526-36624209-1fa400-167deccde3bd7c; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1552291530,1553476405; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1553476463; CNZZDATA1258534273=312623051-1529563067-%7C1553476466";
+$_SESSION['cookies'] = "realParentShopId=1018581; v=mgj; JSESSIONID=612E6CF7DE52C5A90257862F1431981F.tomcat1; token=ec5214db-b337-4c2e-bc77-19ca2c0c1b87; username=%E6%A2%A6%E5%B0%9A%E7%BE%8E%E4%B8%9A; Hm_lvt_cc903faaed69cca18f7cf0997b2e62c9=1535956653; UM_distinctid=167deccde3a65f-06b5ba58957526-36624209-1fa400-167deccde3bd7c; JSESSIONID=5E19D3D7D1C201D157B9FE2938D8459A.tomcat1; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1552291530,1553476405,1554692620; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1554692721; CNZZDATA1258534273=312623051-1529563067-%7C1554692725";
 
 
 if($_GET['action'] == "code"){//获取验证码
@@ -35,7 +35,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = $_REQUEST['shopname'];
+    $shopname = '梦尚美业';
     $data = '';
 
     //获取总数
@@ -59,7 +59,7 @@ if($_GET['action'] == "code"){//获取验证码
 
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = $_REQUEST['shopname'];
+    $shopname = '梦尚美业';
     $data = '';
 
     //获取总数
