@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "realParentShopId=1018581; v=mgj; JSESSIONID=612E6CF7DE52C5A90257862F1431981F.tomcat1; token=ec5214db-b337-4c2e-bc77-19ca2c0c1b87; username=%E6%A2%A6%E5%B0%9A%E7%BE%8E%E4%B8%9A; Hm_lvt_cc903faaed69cca18f7cf0997b2e62c9=1535956653; UM_distinctid=167deccde3a65f-06b5ba58957526-36624209-1fa400-167deccde3bd7c; JSESSIONID=5E19D3D7D1C201D157B9FE2938D8459A.tomcat1; Hm_lvt_4e5bdf78b2b9fcb88736fc67709f2806=1552291530,1553476405,1554692620; Hm_lpvt_4e5bdf78b2b9fcb88736fc67709f2806=1554692721; CNZZDATA1258534273=312623051-1529563067-%7C1554692725";
+$_SESSION['cookies'] = "realParentShopId=18770; v=mgj; JSESSIONID=0C334630A031A87E97CC69E192B74220.tomcat1; username=kemyxiao; token=8be3bd4b-e07e-4399-8f44-48d229a45e33; JSESSIONID=434D9CEA889A0C724CE5A780DCF4D831.tomcat1; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1557126653";
 
 
 if($_GET['action'] == "code"){//获取验证码
@@ -35,7 +35,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '梦尚美业';
+    $shopname = 'kemyxiao';
     $data = '';
 
     //获取总数
@@ -45,6 +45,7 @@ if($_GET['action'] == "code"){//获取验证码
     $totals = isset($totals[1])?$totals[1]:100;
     //总页数
     $pages = ceil($totals/100);
+    //$pages = 1;
     for($i=1; $i<=$pages; $i++){
         $params = "page.currNum=$i&page.rpp=100&set=cash";
         $curl -> params = $params;
@@ -52,14 +53,13 @@ if($_GET['action'] == "code"){//获取验证码
         $pagesData = $curl -> getMembersPage();
         $data .= $curl ->getMembersInfo($pagesData, $i);
     };
-
     if($data == '') {
         header('Location: index.php');
     }
 
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '梦尚美业';
+    $shopname = 'kemyxiao';
     $data = '';
 
     //获取总数
@@ -70,6 +70,7 @@ if($_GET['action'] == "code"){//获取验证码
 
     //总页数
     $pages = ceil($totals/100);
+    //$pages = 1;
     for($i=1; $i<=$pages; $i++){
         $params = "page.currNum=$i&page.rpp=100&set=cash&r=0.3421386775783387";
         $curl -> params = $params;

@@ -224,7 +224,7 @@ class curlapi{
                     $k13 = 14+10*($i-1);
                     $newdata[$k][10] += str_replace('元', '', $other[$k13]); //赠送金
 
-                    $k17 = 18+10*($rows-1);
+                    $k17 = 18+10*($rows-1)-1;
                     $newdata[$k][8] = str_replace('次', '', $other[$k17]); //消费次数
 
                     $newdata[$k][11] = $other[$k18]; //积分
@@ -403,6 +403,7 @@ class curlapi{
                     $v1= trim(str_replace(PHP_EOL, '', $v1));
                     if($k1 == 5) {
                         $v1 = trim(str_replace(',', '，', $v1));
+                        $v1 = trim(str_replace('项目名称:已删除', '项目编号:-1,项目名称:已删除', $v1));
                         $v1 = explode('项目编号:', $v1);
                         unset($v1[0]);
                     }
@@ -422,7 +423,11 @@ class curlapi{
                     preg_match('/总次数:(.*)，/isU', $v2, $p3);  //总次数
                     preg_match('/剩余次数:(.*)，/isU', $v2, $p4);  //剩余次数
                     preg_match('/单次消费金额:(.*)，/isU', $v2, $p5);  //单次消费金额
-                    preg_match('/剩余金额:(.*)#/isU', $v2, $p6);  //剩余金额
+                    if(preg_match("/，失效日期/", $v2)){
+                        preg_match('/剩余金额:(.*)，失效日期/isU', $v2, $p6);  //剩余金额
+                    } else {
+                        preg_match('/剩余金额:(.*)#/isU', $v2, $p6);  //剩余金额
+                    }
                     if(!isset($p6[1])) {
                         preg_match('/剩余金额:(.*)，/isU', $v2, $p6);  //剩余金额
                     }
@@ -438,7 +443,10 @@ class curlapi{
                     $newA[12] = $newA[8];//总剩余次数
                     $newA[13] = $newA[10]; //总剩余金额
                     $newA[14] = $other[8];
-                    $newdata[] = $newA;
+
+                    if($newA[5] != '' && $newA[6] != '已删除'){
+                        $newdata[] = $newA;
+                    }
                 }
             }
         }
