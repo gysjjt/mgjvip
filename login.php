@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "v=mgj; realParentShopId=1025021; JSESSIONID=9D19DA3645BD045F090BEA9376BF2C1B.tomcat1; token=0dfa6bd8-56cf-4ebc-a30c-8f35398a116a; username=18395164433; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=B2766E49B69C54E2AA4654EE9BA1DDD6.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1557215788";
+$_SESSION['cookies'] = "v=mgj; realParentShopId=993001; JSESSIONID=B440AB85D5D24CA2F4031853D8F4158F.tomcat1; token=1586b323-01db-4a2d-931e-31863ec4049b; username=13428789246; cacheShopId_1586b323-01db-4a2d-931e-31863ec4049b=993001; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=88AB7E04A2ADA3B7B4FBE4FA55D13E70.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1563869316";
 
 
 if($_GET['action'] == "code"){//获取验证码
@@ -35,7 +35,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '18395164433';
+    $shopname = '13428789246';
     $data = '';
 
     //获取总数
@@ -59,7 +59,7 @@ if($_GET['action'] == "code"){//获取验证码
 
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '18395164433';
+    $shopname = '飞哥';
     $data = '';
 
     //获取总数

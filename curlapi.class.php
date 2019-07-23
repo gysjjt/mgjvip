@@ -276,6 +276,9 @@ class curlapi{
             );
             $mark = QueryList::Query($rs, $rules)->data;
             $v[16] = $mark[0]['mark'];
+            if(isset($mark[1]['mark'])){
+                $v[16] .= " ".$mark[1]['mark'];
+            }
             $v[16] = preg_replace("/\s\n\t/","",$v[16]);
             $v[16] = str_replace('&amp;', ' ', $v[16]);
             $v[16] = preg_replace("/\s/","", $v[16]);
