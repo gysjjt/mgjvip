@@ -75,7 +75,7 @@ if($_GET['action'] == "code"){//获取验证码
     $pages = ceil($totals/15);
     $pages = 1;
     for($i=1; $i<=$pages; $i++){
-        $params = "page.currNum=$i&page.rpp=15&set=cash&r=0.3421386775783387";
+        $params = "page.currNum=$i&page.rpp=15&set=manage";
         $curl -> params = $params;
         $curl -> url = "https://vip8.meiguanjia.net/shair/timesItem!initTreat.action";
         $pagesData = $curl -> getPackagePage();
