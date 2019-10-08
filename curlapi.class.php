@@ -62,13 +62,18 @@ class curlapi{
     */
     public function curl(){
         session_start();
+        $cacert = getcwd() . '/cacert.pem'; //CA根证书
         $ch=curl_init();
         curl_setopt($ch, CURLOPT_URL,$this -> url);
         curl_setopt($ch, CURLOPT_HEADER,0);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch,CURLOPT_COOKIE,$_SESSION['cookies']);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$this -> params);
         curl_setopt ($ch, CURLOPT_REFERER,$this -> referer);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书
+        curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配
         $result=curl_exec($ch);
         curl_close($ch);
         return $result;
@@ -79,16 +84,18 @@ class curlapi{
     */
     public function getMembersPage(){
         session_start();
+        $cacert = getcwd() . '/cacert.pem'; //CA根证书
         $ch=curl_init();
         curl_setopt($ch, CURLOPT_URL,$this -> url);
         curl_setopt($ch, CURLOPT_HEADER,0);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_COOKIE,$_SESSION['cookies']);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$this -> params);
-        curl_setopt ($ch, CURLOPT_REFERER,$this -> url);
         curl_setopt ($ch, CURLOPT_REFERER,$this -> referer);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书
+        curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配
         $result=curl_exec($ch);
         curl_close($ch);
         return $result;
@@ -99,15 +106,18 @@ class curlapi{
     */
     public function getMembersInfos(){
         session_start();
+        $cacert = getcwd() . '/cacert.pem'; //CA根证书
         $ch=curl_init();
         curl_setopt($ch, CURLOPT_URL,$this -> url);
         curl_setopt($ch, CURLOPT_HEADER,0);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_COOKIE,$_SESSION['cookies']);
+        curl_setopt ($ch, CURLOPT_REFERER,$this -> referer);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$this -> params);
-        curl_setopt ($ch, CURLOPT_REFERER,$this -> url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);   // 只信任CA颁布的证书
+        curl_setopt($ch, CURLOPT_CAINFO, $cacert); // CA根证书（用来验证的网站证书是否是CA颁布）
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // 检查证书中是否设置域名，并且是否与提供的主机名匹配
         $result=curl_exec($ch);
         curl_close($ch);
         return $result;
@@ -268,7 +278,7 @@ class curlapi{
         foreach($newdata as &$v){
             //获取会员备注和欠款
             $keyword = trim($v[0]);
-            $this -> url = "http://vip8.meiguanjia.net/shair/consumerHelp!find.action?searchType=1&keyType=1&keyword=$keyword";
+            $this -> url = "https://vip8.meiguanjia.net/shair/consumerHelp!find.action?searchType=1&keyType=1&keyword=$keyword";
             $rs = $this -> curl();
             //会员备注
             $rules = array(
@@ -453,6 +463,7 @@ class curlapi{
                 }
             }
         }
+
         //导出CVS
         $cvsstr = "手机号,卡号,姓名,卡名称,卡类型,项目编号,项目名称,总次数,剩余次数,单次消费金额,剩余金额,失效日期,总剩余次数,总剩余金额\n";
         $filename = $shopname.'_会员套餐信息.csv';
