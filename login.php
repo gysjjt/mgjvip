@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "v=mgj; realParentShopId=1049521; JSESSIONID=05D30BFEAD3F86E5845ACD8A3BF17E23.tomcat1; token=2294e67b-5c2d-4eec-a361-829e9e3d19a7; username=15030118023; cacheShopId_2294e67b-5c2d-4eec-a361-829e9e3d19a7=1049521; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=35176AD7FE61933575C66D6FCB4D1991.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1569485949";
+$_SESSION['cookies'] = "v=mgj; realParentShopId=1052481; JSESSIONID=86DE816A24AF49FC5859B97A15A04F47.tomcat1; token=d30d2186-1ba3-450b-a5af-680a4e64ec24; username=%E6%A2%81%E6%B4%AA; cacheShopId_d30d2186-1ba3-450b-a5af-680a4e64ec24=1052481; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=CB5E4923FC74DD1A8559DD19E905D597.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1571039257";
 
 
 //$_SESSION['cookies'] = "v=mgj; realParentShopId=192300; JSESSIONID=E7664905F13B72FBB68F66E9F409039F.tomcat1; token=ac250798-9a56-4446-9d22-ba3c15ca90ec; username=%E4%B8%9D%E5%B0%9A%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%912; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=C5109178A6EC249581D2C6148423B024.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1565159026";
@@ -38,7 +38,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '15030118023';
+    $shopname = '梁洪';
     $data = '';
 
     //获取总数
@@ -62,7 +62,7 @@ if($_GET['action'] == "code"){//获取验证码
 
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '15030118023';
+    $shopname = '梁洪';
     $data = '';
 
     //获取总数
@@ -70,12 +70,11 @@ if($_GET['action'] == "code"){//获取验证码
     $rs = $curl -> curl();
     preg_match('/共(.*)条/isU', $rs, $totals);
     $totals = isset($totals[1])?$totals[1]:100;
-
     //总页数
     $pages = ceil($totals/15);
     $pages = 1;
     for($i=1; $i<=$pages; $i++){
-        $params = "page.currNum=$i&page.rpp=15&set=manage";
+        $params = "page.currNum=$i&page.rpp=100&set=manage";
         $curl -> params = $params;
         $curl -> url = "https://vip8.meiguanjia.net/shair/timesItem!initTreat.action";
         $pagesData = $curl -> getPackagePage();
