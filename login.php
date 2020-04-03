@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "v=mgj; realParentShopId=998210; username=15907621196; JSESSIONID=29A9F67619EC4C4168464AE03D0D4AE2.tomcat1; cacheShopId_4a01617b-5cda-473c-aaf3-7cc99c435b35=857401; token=7d0105a4-8186-4d4b-bcfd-b97c68d6953b; cacheShopId_7d0105a4-8186-4d4b-bcfd-b97c68d6953b=857401; UM_distinctid=16e4f375e5523-0ed17833dd931b-5a40201d-1fa400-16e4f375e5685d; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1573459420";
+$_SESSION['cookies'] = "v=mgj; realParentShopId=846620; JSESSIONID=8D1A2345B018D4EF8F8D913BE28BC1CE.tomcat1; token=20ae633d-6f26-4887-a8d4-9114864f1c41; username=15271205006; cacheShopId_20ae633d-6f26-4887-a8d4-9114864f1c41=846626; UM_distinctid=16e4f375e5523-0ed17833dd931b-5a40201d-1fa400-16e4f375e5685d; JSESSIONID=60B441F1174FC1BDE624F79D51514E8C.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1576573754";
 
 
 //$_SESSION['cookies'] = "v=mgj; realParentShopId=192300; JSESSIONID=E7664905F13B72FBB68F66E9F409039F.tomcat1; token=ac250798-9a56-4446-9d22-ba3c15ca90ec; username=%E4%B8%9D%E5%B0%9A%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%912; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=C5109178A6EC249581D2C6148423B024.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1565159026";
@@ -38,7 +38,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '15907621196';
+    $shopname = '15271205006';
     $data = '';
 
     //获取总数
@@ -62,7 +62,7 @@ if($_GET['action'] == "code"){//获取验证码
 
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '15907621196';
+    $shopname = '15271205006';
     $data = '';
 
     //获取总数
@@ -70,6 +70,7 @@ if($_GET['action'] == "code"){//获取验证码
     $rs = $curl -> curl();
     preg_match('/共(.*)条/isU', $rs, $totals);
     $totals = isset($totals[1])?$totals[1]:100;
+
     //总页数
     $pages = ceil($totals/15);
     $pages = 1;
