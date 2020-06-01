@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "v=mgj; realParentShopId=846620; JSESSIONID=8D1A2345B018D4EF8F8D913BE28BC1CE.tomcat1; token=20ae633d-6f26-4887-a8d4-9114864f1c41; username=15271205006; cacheShopId_20ae633d-6f26-4887-a8d4-9114864f1c41=846626; UM_distinctid=16e4f375e5523-0ed17833dd931b-5a40201d-1fa400-16e4f375e5685d; JSESSIONID=60B441F1174FC1BDE624F79D51514E8C.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1576573754";
+$_SESSION['cookies'] = "v=mgj; realParentShopId=1174573; JSESSIONID=26ADAAE3C1E35D6AC85433C9FD09EE50; token=7fbb97aa-555b-4843-b925-0d56fa7512f9; username=18923362546; cacheShopId_7fbb97aa-555b-4843-b925-0d56fa7512f9=1182632; UM_distinctid=171f8aad816131-04078b997c94ac-70103e47-1fa400-171f8aad817dc; JSESSIONID=B0CC3F94D5FA436F8E2BADCDD7EBD99A; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1590989848";
 
 
 //$_SESSION['cookies'] = "v=mgj; realParentShopId=192300; JSESSIONID=E7664905F13B72FBB68F66E9F409039F.tomcat1; token=ac250798-9a56-4446-9d22-ba3c15ca90ec; username=%E4%B8%9D%E5%B0%9A%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%912; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=C5109178A6EC249581D2C6148423B024.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1565159026";
@@ -38,7 +38,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '15271205006';
+    $shopname = '18923362546';
     $data = '';
 
     //获取总数
@@ -47,10 +47,10 @@ if($_GET['action'] == "code"){//获取验证码
     preg_match('/共(.*)条/isU', $rs, $totals);
     $totals = isset($totals[1])?$totals[1]:100;
     //总页数
-    $pages = ceil($totals/15);
+    $pages = ceil($totals/100);
     //$pages = 1;
     for($i=1; $i<=$pages; $i++){
-        $params = "page.currNum=$i&page.rpp=15&set=cash";
+        $params = "page.currNum=$i&page.rpp=100&set=cash";
         $curl -> params = $params;
         $curl -> url = "https://vip8.meiguanjia.net/shair/memberInfo!memberlist.action";
         $pagesData = $curl -> getMembersPage();
@@ -59,10 +59,9 @@ if($_GET['action'] == "code"){//获取验证码
     if($data == '') {
         header('Location: index.php');
     }
-
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '15271205006';
+    $shopname = '18923362546';
     $data = '';
 
     //获取总数

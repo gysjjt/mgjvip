@@ -275,6 +275,9 @@ class curlapi{
         $filename = $shopname.'_会员信息.csv';
         $cvsstr = iconv('utf-8','gb2312//ignore',$cvsstr);
 
+        $newdata = array_values($newdata);
+        ksort($newdata);
+
         foreach($newdata as &$v){
             //获取会员备注和欠款
             $keyword = trim($v[0]);
