@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "v=mgj; realParentShopId=1174573; JSESSIONID=26ADAAE3C1E35D6AC85433C9FD09EE50; token=7fbb97aa-555b-4843-b925-0d56fa7512f9; username=18923362546; cacheShopId_7fbb97aa-555b-4843-b925-0d56fa7512f9=1182632; UM_distinctid=171f8aad816131-04078b997c94ac-70103e47-1fa400-171f8aad817dc; JSESSIONID=B0CC3F94D5FA436F8E2BADCDD7EBD99A; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1590989848";
+$_SESSION['cookies'] = "v=mgj; realParentShopId=1015260; JSESSIONID=750E7E26C9E5A4EE10A50D980A93F318; token=ec2bf9ee-f43a-4cc6-a68f-3eb4f0abe665; username=15166998382; cacheShopId_ec2bf9ee-f43a-4cc6-a68f-3eb4f0abe665=1015264; UM_distinctid=171f8aad816131-04078b997c94ac-70103e47-1fa400-171f8aad817dc; JSESSIONID=18645A84FDDF907976940CBEC1952CFA; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1594265890";
 
 
 //$_SESSION['cookies'] = "v=mgj; realParentShopId=192300; JSESSIONID=E7664905F13B72FBB68F66E9F409039F.tomcat1; token=ac250798-9a56-4446-9d22-ba3c15ca90ec; username=%E4%B8%9D%E5%B0%9A%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%912; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=C5109178A6EC249581D2C6148423B024.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1565159026";
@@ -38,7 +38,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '18923362546';
+    $shopname = '15166998382';
     $data = '';
 
     //获取总数
@@ -61,7 +61,7 @@ if($_GET['action'] == "code"){//获取验证码
     }
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '18923362546';
+    $shopname = '15166998382';
     $data = '';
 
     //获取总数
