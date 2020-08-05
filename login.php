@@ -10,7 +10,7 @@ include_once("curlapi.class.php");
 $curl = new curlapi();
 
 session_start();
-$_SESSION['cookies'] = "v=mgj; realParentShopId=131771; username=%E5%88%A9%E5%85%B4%E5%8F%91%E5%9E%8B%E8%AE%BE%E8%AE%A1; cacheShopId_b4cdd36a-aeec-4b61-bdeb-7b90d3906501=131771; JSESSIONID=1CAB1C5FEFE12EA2B53CF9C772E42440; token=be9e16ac-13ac-40de-a67c-c0eff570f166; cacheShopId_be9e16ac-13ac-40de-a67c-c0eff570f166=131771; UM_distinctid=171f8aad816131-04078b997c94ac-70103e47-1fa400-171f8aad817dc; JSESSIONID=B5ED5F63D0364A44BF6E42818498D1D9; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1596329128";
+$_SESSION['cookies'] = "v=mgj; realParentShopId=1128637; JSESSIONID=F7EE52719A0623063E22ACC988C2DDDE; token=5349d72d-df82-4ac0-b31f-78122c0e3279; username=2758; cacheShopId_5349d72d-df82-4ac0-b31f-78122c0e3279=1128651; UM_distinctid=171f8aad816131-04078b997c94ac-70103e47-1fa400-171f8aad817dc; JSESSIONID=4A20C8E3A9D5D3F0464300A72C90B981; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1596613537";
 
 
 //$_SESSION['cookies'] = "v=mgj; realParentShopId=192300; JSESSIONID=E7664905F13B72FBB68F66E9F409039F.tomcat1; token=ac250798-9a56-4446-9d22-ba3c15ca90ec; username=%E4%B8%9D%E5%B0%9A%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%912; UM_distinctid=16a8bc2e80a564-0f7181dc40ce18-5a40201d-1fa400-16a8bc2e80b8af; JSESSIONID=C5109178A6EC249581D2C6148423B024.tomcat1; CNZZDATA1258534273=2062004128-1557122968-http%253A%252F%252Fvip8.meiguanjia.net%252F%7C1565159026";
@@ -38,7 +38,7 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
-    $shopname = '利兴发型设计';
+    $shopname = '2758';
     $data = '';
 
     //获取总数
@@ -61,7 +61,7 @@ if($_GET['action'] == "code"){//获取验证码
     }
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
-    $shopname = '利兴发型设计';
+    $shopname = '2758';
     $data = '';
 
     //获取总数

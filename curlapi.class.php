@@ -320,18 +320,18 @@ class curlapi{
 
 
             //卡备注
-            $shopid = $v[20];
-            $id = $v[21];
-            $this -> url = "http://vip8.meiguanjia.net/shair/memberArchives!editMember.action?id=$id&shopid=$shopid&flag=2&dickey=1";
-            $rs = $this -> curl();
-            $rules = array(
-                 'mark' => array('input','name'),
-                 'value' => array('input','value'),
-             );
-             $cardRemark = QueryList::Query($rs, $rules)->data;
-             if(isset($cardRemark[40]['value']) && $cardRemark[40]['value'] != ''){
-                 $v[16] .= "，卡备注：".$cardRemark[40]['value'];
-             }
+//            $shopid = $v[20];
+//            $id = $v[21];
+//            $this -> url = "http://vip8.meiguanjia.net/shair/memberArchives!editMember.action?id=$id&shopid=$shopid&flag=2&dickey=1";
+//            $rs = $this -> curl();
+//            $rules = array(
+//                 'mark' => array('input','name'),
+//                 'value' => array('input','value'),
+//             );
+//             $cardRemark = QueryList::Query($rs, $rules)->data;
+//             if(isset($cardRemark[40]['value']) && $cardRemark[40]['value'] != ''){
+//                 $v[16] .= "，卡备注：".$cardRemark[40]['value'];
+//             }
             unset($v[20]);
             unset($v[21]);
 
