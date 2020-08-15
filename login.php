@@ -71,8 +71,7 @@ if($_GET['action'] == "code"){//获取验证码
     $totals = isset($totals[1])?$totals[1]:100;
 
     //总页数
-    $pages = ceil($totals/15);
-    $pages = 1;
+    $pages = ceil($totals/30);
     for($i=1; $i<=$pages; $i++){
         $params = "page.currNum=$i&page.rpp=100&set=manage";
         $curl -> params = $params;
