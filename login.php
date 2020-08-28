@@ -38,7 +38,11 @@ if($_GET['action'] == "code"){//获取验证码
         echo 1;
     }
 }else if($_GET['action'] == 'curlmember'){
+<<<<<<< HEAD
     $shopname = '15818681007';
+=======
+    $shopname = '13823511239';
+>>>>>>> 6385aafac5b13e121515a533d7b53dec11291a3e
     $data = '';
 
     //获取总数
@@ -61,7 +65,11 @@ if($_GET['action'] == "code"){//获取验证码
     }
     $curl -> downMembersCvs($data, $shopname);
 }else if($_GET['action'] == 'curlpackage'){
+<<<<<<< HEAD
     $shopname = '15818681007';
+=======
+    $shopname = '13823511239';
+>>>>>>> 6385aafac5b13e121515a533d7b53dec11291a3e
     $data = '';
 
     //获取总数
@@ -71,8 +79,7 @@ if($_GET['action'] == "code"){//获取验证码
     $totals = isset($totals[1])?$totals[1]:100;
 
     //总页数
-    $pages = ceil($totals/15);
-    $pages = 1;
+    $pages = ceil($totals/30);
     for($i=1; $i<=$pages; $i++){
         $params = "page.currNum=$i&page.rpp=100&set=manage";
         $curl -> params = $params;
